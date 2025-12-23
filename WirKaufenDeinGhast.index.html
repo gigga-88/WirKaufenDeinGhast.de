@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Wir kaufen dein Happy Ghast</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, #1b1b1b, #0f0f0f);
+            color: #ffffff;
+            font-family: 'Press Start 2P', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: #1f1f1f;
+            border: 4px solid #3c3c3c;
+            border-radius: 14px;
+            padding: 30px;
+            max-width: 720px;
+            width: 100%;
+            box-shadow: 0 0 30px rgba(0,0,0,0.7);
+        }
+        h1 {
+            text-align: center;
+            color: #ff5fff;
+            margin-bottom: 12px;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 10px;
+            color: #aaaaaa;
+            margin-bottom: 30px;
+        }
+        label {
+            font-size: 10px;
+            display: block;
+            margin-bottom: 8px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 10px;
+            background: #0f0f0f;
+            border: 3px solid #555;
+            color: #00ff99;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            font-family: inherit;
+            background: #00ff99;
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        button:hover {
+            background: #00cc77;
+        }
+        .result {
+            margin-top: 25px;
+            padding: 15px;
+            background: #0d0d0d;
+            border: 3px dashed #ff5fff;
+            border-radius: 10px;
+            display: none;
+            font-size: 10px;
+            color: #ffb3ff;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 22px;
+            font-size: 8px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Wir kaufen dein Happy Ghast</h1>
+    <div class="subtitle">Offizieller Ghast-Ankauf™<br>Nether-zertifiziert ✔</div>
+
+    <label>Wie weit ist dein Happy Ghast geflogen? (Blöcke)</label>
+    <input type="number" id="distance" placeholder="z.B. 42069">
+
+    <label>Wie viele Minecraft-Tage ist dein Ghast alt?</label>
+    <input type="number" id="days" placeholder="z.B. 1337">
+
+    <button onclick="calculate()">Happy Ghast verkaufen</button>
+
+    <div class="result" id="result"></div>
+
+    <div class="footer">⚠️ Satire-Website – keine echten Ghasts wurden verletzt.</div>
+</div>
+
+<script>
+function calculate() {
+    const distance = parseInt(document.getElementById("distance").value);
+    const days = parseInt(document.getElementById("days").value);
+    const result = document.getElementById("result");
+
+    if (isNaN(distance) || isNaN(days)) {
+        result.style.display = "block";
+        result.innerHTML = "❌ Bitte alle Ghast-Daten korrekt eingeben!";
+        return;
+    }
+
+    const price = Math.floor(distance * 0.42 + days * 13.37);
+    let comment = price > 50000 ?
+        "Legendärer Happy Ghast! Fast schon illegal." :
+        price > 10000 ?
+        "Stabiler Ghast mit Nether-Erfahrung." :
+        "Junger Ghast – aber wir nehmen ihn.";
+
+    result.style.display = "block";
+    result.innerHTML = `💰 Ankaufspreis:<br><br>
+        <span style="color:#00ff99">${price} Smaragd-Coins</span><br><br>
+        🐲 Bewertung:<br>${comment}`;
+}
+</script>
+</body>
+</html>
